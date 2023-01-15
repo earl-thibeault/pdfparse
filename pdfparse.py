@@ -13,6 +13,9 @@ def pdf2txt(pdf,txt,**opts):
     cmd.append(txt)
     subprocess.call(cmd)
     return txt
+##txt is the text file out put from pdf2txt nocopy is a list of lines to not copy from the txt file include
+##['',' '] to include blank lines out is the out csv fieldlst is a list or tulip containing the feilds 
+##in order from right to left outfile is csv file portble format
 def simptbl(txt, nocopy, out, fieldlst):
     lnlst=[]
     with open(txt, 'r')as tf:
@@ -30,7 +33,7 @@ def simptbl(txt, nocopy, out, fieldlst):
     dictlst=[]            
     for r in lnlst:
         if len(r)==len(fieldlst):
-            rdict=dict.fromkeys(fieldlst,value='?')
+            rdict=dict.fromkeys(fieldlst)
             for i, field in enumerate(fieldlst):
                 n=i-1
                 rdict.update({field:r[n]})
